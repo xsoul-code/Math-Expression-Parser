@@ -1,0 +1,11 @@
+build/
+.cache/
+sdkconfig.old
+*.pyc
+.vscode/
+managed_components/
+README.md.save
+..gitignore.kate-swp
+parser
+Build/
+
