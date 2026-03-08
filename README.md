@@ -20,6 +20,8 @@ make
 
 ## Usage
 
+Currently before every result there is token type list created from prompt for troubleshooting new features to come.
+
 ```
 Math parser - Throw your equasion here: 3 + 4 * 2
 = 11
