@@ -14,6 +14,12 @@ enum class TokenType
     LPAREN,
     RPAREN,
     EMPTY,
+    SIN,
+    COS,
+    TAN,
+    SQRT,
+    LOG,
+    LN
 };
 
 struct Token 
