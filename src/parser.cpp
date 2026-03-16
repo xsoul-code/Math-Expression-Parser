@@ -3,6 +3,8 @@
 #include<cmath>
 #include<stdexcept>
 
+#define PI 3.14159265
+
 parser::parser(std::vector<Token> tokenList)
 {
     data = tokenList;
@@ -54,7 +56,7 @@ double parser::Term()       // * and / and ()
 
 double parser::Power()      // ^
 {
-    double result = Primary();
+    double result = Function();
     while(data[current].Type == TokenType::POWER)
     {
         current++;
@@ -62,6 +64,57 @@ double parser::Power()      // ^
     }
     return result;
 }     
+
+double parser::Function()
+{
+    double result;
+    if(data[current].Type == TokenType::SIN || data[current].Type == TokenType::COS||
+            data[current].Type == TokenType::TAN || data[current].Type == TokenType::LN ||
+            data[current].Type == TokenType::LOG || data[current].Type == TokenType::SQRT)
+    {
+        if(data[current].Type == TokenType::SIN)
+        {
+            current++;
+            double param;
+            param = Primary();
+            result = sin(param * PI /180);
+        }
+        else if(data[current].Type == TokenType::COS)
+        {
+            current++;
+            double param;
+            param = Primary();
+            result = cos(param * PI /180);
+        }
+        else if(data[current].Type == TokenType::TAN)
+        {
+            current++;
+            double param;
+            param = Primary();
+            result = tan(param * PI /180);
+        }
+        else if(data[current].Type == TokenType::LN)
+        {
+            current++;
+            result = log(Primary());
+        }
+        else if(data[current].Type == TokenType::LOG)
+        {
+            current++;
+            result = log10(Primary());
+        }
+        else if(data[current].Type == TokenType::SQRT)
+        {
+            current++;
+            result = sqrt(Primary());
+        }
+    }
+    else
+    {
+        result = Primary();
+    }
+    return result;
+}
 
 double parser::Primary()    //Numbers and dots
 {
