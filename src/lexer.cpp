@@ -42,7 +42,7 @@ std::vector<Token> lexer::getTokenList()
             Token_s.Type = TokenType::MINUS;
             tokenList.push_back(Token_s);
         }
-        else if(prompt[i] == '*' || prompt[i] == 'x')
+        else if(prompt[i] == '*')
         {
             Token_s.Type = TokenType::MULTIPLY;
             tokenList.push_back(Token_s);
@@ -119,7 +119,19 @@ std::vector<Token> lexer::getTokenList()
                 tokenList.push_back(Token_s);
                 i+=2;
             }
-        }  
+        }
+        else if(prompt[i] == '=')
+        {
+            Token_s.Type = TokenType::EQUALS;
+            tokenList.push_back(Token_s);
+        }
+        else if(prompt[i] == 'x' || prompt[i] == 'y' || prompt[i] == 'z')
+        {
+            Token_s.Type = TokenType::VARIABLE;
+            Token_s.numb = prompt[i];
+            Token_s.name = std::string(1, prompt[i]); // Set the name as string 
+            tokenList.push_back(Token_s);
+        }   
         
     }
     return tokenList;

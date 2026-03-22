@@ -19,13 +19,16 @@ enum class TokenType
     TAN,
     SQRT,
     LOG,
-    LN
+    LN,
+    VARIABLE,
+    EQUALS
 };
 
 struct Token 
 {
     TokenType Type;        // Token type
     double    numb = 0.0;  // Value of token
+    std::string name = ""; // String type name
 };
 
 std::string tokenTypeToString(TokenType type);

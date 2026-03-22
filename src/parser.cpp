@@ -19,7 +19,7 @@ double parser::exec()
 double parser::Expression() // + and -
 {
     double result = Term();
-    while(data[current].Type == TokenType::PLUS || data[current].Type == TokenType::MINUS)
+    while(current < data.size() && (data[current].Type == TokenType::PLUS || data[current].Type == TokenType::MINUS))
     {
         if(data[current].Type == TokenType::PLUS)
         {
@@ -38,7 +38,7 @@ double parser::Expression() // + and -
 double parser::Term()       // * and / and ()
 {
     double result = Power();
-    while(data[current].Type == TokenType::MULTIPLY || data[current].Type == TokenType::DIVIDE) 
+    while(current < data.size() && (data[current].Type == TokenType::MULTIPLY || data[current].Type == TokenType::DIVIDE)) 
     {
         if(data[current].Type == TokenType::MULTIPLY)
         {
@@ -57,7 +57,7 @@ double parser::Term()       // * and / and ()
 double parser::Power()      // ^
 {
     double result = Function();
-    while(data[current].Type == TokenType::POWER)
+    while(current < data.size() && data[current].Type == TokenType::POWER)
     {
         current++;
         result = std::pow(result, Primary());
@@ -68,9 +68,9 @@ double parser::Power()      // ^
 double parser::Function()
 {
     double result;
-    if(data[current].Type == TokenType::SIN || data[current].Type == TokenType::COS||
+    if(current < data.size() && (data[current].Type == TokenType::SIN || data[current].Type == TokenType::COS||
             data[current].Type == TokenType::TAN || data[current].Type == TokenType::LN ||
-            data[current].Type == TokenType::LOG || data[current].Type == TokenType::SQRT)
+            data[current].Type == TokenType::LOG || data[current].Type == TokenType::SQRT))
     {
         if(data[current].Type == TokenType::SIN)
         {
@@ -118,6 +118,10 @@ double parser::Function()
 
 double parser::Primary()    //Numbers and dots
 {
+    if(current >= data.size())
+    {
+        throw std::runtime_error("Unexpected end of expression");
+    }
     if(data[current].Type == TokenType::LPAREN)
     { 
         current++;
