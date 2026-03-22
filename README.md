@@ -4,11 +4,13 @@ A recursive descent expression parser written in C++17 that takes a math express
 
 ## Features
 
-* Operators: `+`, `-`, `*`, `/`, `^` 
+* Operators: `+`, `-`, `*`, `/`, `^`
 * Math functions: `sin()`, `cos()`, `tan()`, `ln()`, `log()`, `sqrt()`
 * Floating point numbers
 * Parentheses grouping
 * Correct order of operations (PEMDAS)
+* REPL — interactive loop with `quit` to exit
+* Expression history — type `history` to see past results
 
 ## Build
 
@@ -21,8 +23,8 @@ make
 
 ## Usage
 
-Recently implemented working math functions sin, cos, tan, ln, log, sqrt coming
-with PHASE 2 of this project's roadmap. 
+The parser runs in an interactive REPL loop. Type math expressions to evaluate them,
+`history` to view past results, or `quit` to exit.
 
 ```
 Math parser - Throw your equasion here: 3 + 4 * 2
@@ -34,12 +36,16 @@ Math parser - Throw your equasion here: (3 + 4) * 2
 Math parser - Throw your equasion here: 2 ^ 10
 = 1024
 
-Math parser - Throw your equasion here: 5 + cos(120)
-= 4.5
+Math parser - Throw your equasion here: sin(45)
+= 0.707107
 
-Math parser - Throw your equasion here: 2*ln(30) + 230*sin(45)             
-= 169.437
+Math parser - Throw your equasion here: history
+Output 0: 3 + 4 * 2 = 11
+Output 1: (3 + 4) * 2 = 14
+Output 2: 2 ^ 10 = 1024
+Output 3: sin(45) = 0.707107
 
+Math parser - Throw your equasion here: quit
 ```
 
 ## Roadmap
